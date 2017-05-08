@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/barumel/node-radio-station/issues"
   },
-  "homepage": "https://github.com/barumel/node-radio-station#readme"
+  "homepage": "https://github.com/barumel/node-radio-station#readme",
+  "dependencies": {
+    "fluent-ffmpeg": "^2.1.2",
+    "fs-extra": "^3.0.1",
+    "lame": "^1.2.4",
+    "lodash": "^4.17.4",
+    "speaker": "^0.3.0",
+    "ytdl-core": "^0.14.0"
+  }
 }
