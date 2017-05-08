@@ -2,7 +2,7 @@
   "name": "node-radio-station",
   "version": "0.0.1",
   "description": "Simple nodejs based radio station that allows you to stream sound from different sources",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
