@@ -1,6 +1,9 @@
 # node-radio-station
 At the moment, this is still a draft. The biggest part of this application is dummy code and it won't run if you checkout.
 
+## Requirements
+- NodeJS: 7.10.0
+- fluent-ffmpeg / ffmpeg: >= 0.9 (https://ffmpeg.org/download.html)
 
 ## Know Issues
 ### Speaker
