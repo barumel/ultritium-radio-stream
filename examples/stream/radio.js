@@ -16,8 +16,8 @@ const playlist = new Playlist('Super Awesom Playlist');
 const meta = {
   id: 1,
   source: 'youtube',
-  uri: 'https://www.youtube.com/watch?v=WrrJSKqL1oA',
-  duration: 30000
+  uri: 'https://www.youtube.com/watch?v=kfchvCyHmsc',
+  duration: 8000
 };
 
 const meta2 = {

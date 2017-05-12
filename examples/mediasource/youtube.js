@@ -1,5 +1,3 @@
-'use strict';
-
 const Speaker = require('speaker');
 const decoder = require('lame').Decoder;
 
