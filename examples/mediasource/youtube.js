@@ -22,11 +22,10 @@ const meta2 = {
   source: 'youtube',
   uri: 'https://www.youtube.com/watch?v=WrrJSKqL1oA',
   duration: 30000
-}
+};
 
 // Get the given song
 const stream = mediasource.get(meta2);
-console.log(stream);
 
 // Pipe the result to the decoder / speaker
 stream.pipe(decoder())
