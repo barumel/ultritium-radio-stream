@@ -23,8 +23,8 @@ class Ultritium {
     return mediasource;
   }
 
-  Playlist(name) {
-    const playlist = new Playlist(name);
+  Playlist(data, items) {
+    const playlist = new Playlist(data, items);
 
     return playlist;
   }
@@ -46,7 +46,7 @@ class Ultritium {
       speaker: TransportSpeaker,
       express: TransportExpress
     };
-    
+
     const transport = new transports[type](destination);
 
     return transport;
