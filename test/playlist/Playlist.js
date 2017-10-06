@@ -242,4 +242,41 @@ describe('Playlist Tests', () => {
       done();
     });
   });
+
+  describe('Test count method', () => {
+    it('Must return the correct item count', (done) => {
+      const playlist = new Playlist({name: 'test'}, {repeat: false});
+      const item1 = new PlaylistItem({});
+      const item2 = new PlaylistItem({});
+
+      assert.that(playlist.count()).is.equalTo(0);
+
+      playlist.add(item1);
+      assert.that(playlist.count()).is.equalTo(1);
+
+      playlist.add(item2);
+      assert.that(playlist.count()).is.equalTo(2);
+
+      done();
+    });
+  });
+
+  describe('Test empty method', () => {
+    it('Must return true if no items are in this playlist', (done) => {
+      const playlist = new Playlist({name: 'test'}, {repeat: false});
+      assert.that(playlist.empty()).is.true();
+
+      done();
+    });
+
+    it('Must return true if no items are in this playlist', (done) => {
+      const playlist = new Playlist({name: 'test'}, {repeat: false});
+      const item1 = new PlaylistItem({});
+
+      playlist.add(item1);
+      assert.that(playlist.empty()).is.false();
+      
+      done();
+    });
+  });
 });
