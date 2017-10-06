@@ -4,7 +4,7 @@
   "description": "Simple nodejs based radio station that allows you to stream sound from different sources",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive --bail --async-only"
   },
   "repository": {
     "type": "git",
@@ -17,13 +17,20 @@
   },
   "homepage": "https://github.com/barumel/node-radio-station#readme",
   "dependencies": {
-    "bluebird": "^3.5.0",
+    "bluebird": "^3.5.1",
     "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^3.0.1",
     "lame": "^1.2.4",
     "lodash": "^4.17.4",
+    "multistream": "^2.1.0",
     "speaker": "^0.3.0",
     "uuid": "^3.0.1",
     "ytdl-core": "^0.14.0"
+  },
+  "devDependencies": {
+    "assertthat": "^0.10.3",
+    "eslint": "^4.7.2",
+    "eslint-config-es": "^0.8.12",
+    "mocha": "^3.5.3"
   }
 }
