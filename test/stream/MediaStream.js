@@ -296,8 +296,8 @@ describe('MediaStream Tests', () => {
 
   describe('Test play method', () => {
     const playlist = new Playlist({}, {repeat: true});
-    const item1 = new PlaylistItem({mediasource: 'test'});
-    const item2 = new PlaylistItem({mediasource: 'test'});
+    const item1 = new PlaylistItem({source: 'test'});
+    const item2 = new PlaylistItem({source: 'test'});
     playlist.add(item1)
     .add(item2);
 
