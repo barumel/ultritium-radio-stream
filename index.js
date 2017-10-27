@@ -1,9 +1,9 @@
-const RadioStream = require('./lib/stream/radio');
 const MediaStream = require('./lib/stream/MediaStream');
 const MediaSourceYoutube = require('./lib/mediasource/Youtube');
 const Playlist = require('./lib/playlist/Playlist');
 const PlaylistItem = require('./lib/playlist/Item');
 const Client = require('./lib/client/Client');
+const lame = require('lame');
 
 class Ultritium {
   constructor() {
@@ -11,7 +11,7 @@ class Ultritium {
   }
 
   Stream(type, playlist) {
-    const stream = new RadioStream(playlist);
+    const stream = new MediaStream(playlist);
 
     return stream;
   }
@@ -44,6 +44,14 @@ class Ultritium {
     const client = new Client(target);
 
     return client;
+  }
+
+  Decoder() {
+    return lame.Decoder();
+  }
+
+  Encoder() {
+    return new lame.Encoder({channels: 2, bitDepth: 16, sampleRate: 44100});
   }
 }
 
