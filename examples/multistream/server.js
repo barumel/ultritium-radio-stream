@@ -6,8 +6,8 @@ var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 
-const RadioStream = require('ultritium-radio-stream');
-const MediaSource = RadioStream.Mediasource('youtube');
+const RadioStream = require('../../index');
+const MediaSource = RadioStream.MediaSource('youtube');
 const MultiStream = require('multistream');
 const lame = require('lame');
 
@@ -52,6 +52,39 @@ router.get('/stream', function(req, res) {
   const encoder = new lame.Encoder({channels: 2, bitDepth: 16, sampleRate: 44100});
 
   MultiStream(streams).pipe(decoder).pipe(encoder).pipe(res);
+});
+
+router.get('/v2/stream', (req, res) => {
+  const dings = [{
+    source: 'youtube',
+    uri: 'https://www.youtube.com/watch?v=j1FwlQhFLQQ',
+    duration: 188000
+  }, {
+    source: 'youtube',
+    uri: 'https://www.youtube.com/watch?v=Ayt7gBA38og',
+    duration: 210000
+  }, {
+    source: 'youtube',
+    uri: 'https://www.youtube.com/watch?v=1weknlCoHmw',
+    duration: 199000
+  }];
+
+  res.set({'Content-Type': 'audio/mpeg'});
+  res.set({'Access-Control-Allow-Origin': '*'});
+  res.set({'Content-Encoding': 'identity'});
+
+  const playlist = RadioStream.Playlist({name: 'Test'}, {repeat: true});
+  dings.forEach(ding => playlist.add(RadioStream.PlaylistItem(ding)));
+
+  const decoder = lame.Decoder();
+  const encoder = new lame.Encoder({channels: 2, bitDepth: 16, sampleRate: 44100});
+  const stream = RadioStream.MediaStream(playlist, decoder, encoder);
+  const client = RadioStream.Client(res);
+
+  stream.registerMediaSource(RadioStream.MediaSource('youtube'));
+  stream.registerClient(client);
+
+  stream.start();
 });
 
 // more routes for our API will happen here
