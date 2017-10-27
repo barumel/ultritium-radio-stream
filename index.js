@@ -1,10 +1,9 @@
 const RadioStream = require('./lib/stream/radio');
-const MediaSourceYoutube = require('./lib/mediasource/youtube');
-const Playlist = require('./lib/playlist/playlist');
-const PlaylistItem = require('./lib/playlist/item');
-const Client = require('./lib/client/client');
-const TransportSpeaker = require('./lib/transport/speaker');
-const TransportExpress = require('./lib/transport/express');
+const MediaStream = require('./lib/stream/MediaStream');
+const MediaSourceYoutube = require('./lib/mediasource/Youtube');
+const Playlist = require('./lib/playlist/Playlist');
+const PlaylistItem = require('./lib/playlist/Item');
+const Client = require('./lib/client/Client');
 
 class Ultritium {
   constructor() {
@@ -17,7 +16,13 @@ class Ultritium {
     return stream;
   }
 
-  Mediasource(type) {
+  MediaStream(playlist, decoder, encoder) {
+    const stream = new MediaStream(playlist, decoder, encoder);
+
+    return stream;
+  }
+
+  MediaSource(type) {
     const mediasource = new MediaSourceYoutube();
 
     return mediasource;
@@ -35,21 +40,10 @@ class Ultritium {
     return item;
   }
 
-  Client(transport) {
-    const client = new Client(transport);
+  Client(target) {
+    const client = new Client(target);
 
     return client;
-  }
-
-  Transport(type, destination) {
-    const transports = {
-      speaker: TransportSpeaker,
-      express: TransportExpress
-    };
-
-    const transport = new transports[type](destination);
-
-    return transport;
   }
 }
 

@@ -304,6 +304,7 @@ describe('MediaStream Tests', () => {
     const decoder = new PassThrough();
     const encoder = new PassThrough();
     const stream = new MediaStream(playlist, decoder, encoder);
+    const target = new PassThrough();
 
     // MediaSource mock
     const playable = new Playable();
@@ -323,12 +324,13 @@ describe('MediaStream Tests', () => {
     });
 
     it('Client must receive data sent to playable', (done) => {
-      const client = new Client();
-      client.write = (chunk) => {
+      const client = new Client(target);
+
+      target.on('data', (chunk) => {
         assert.that(chunk.toString()).is.equalTo('test');
 
         done();
-      };
+      });
 
       stream.registerClient(client);
       stream.start();
